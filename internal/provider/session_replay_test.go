@@ -64,10 +64,14 @@ func TestGeminiSavedSessionReplay(t *testing.T) {
 			t.Fatal(err)
 		}
 		responses := 0
-		for _, content := range body["contents"].([]any) {
+		var omittedAt []int
+		for contentIndex, content := range body["contents"].([]any) {
 			for _, part := range content.(map[string]any)["parts"].([]any) {
 				if fr, ok := part.(map[string]any)["functionResponse"].(map[string]any); ok {
 					responses++
+					if fr["response"].(map[string]any)["attachment_notes"] != nil {
+						omittedAt = append(omittedAt, contentIndex)
+					}
 					if nested, ok := fr["parts"].([]any); ok {
 						for _, media := range nested {
 							if media.(map[string]any)["text"] != nil {
@@ -79,5 +83,6 @@ func TestGeminiSavedSessionReplay(t *testing.T) {
 			}
 		}
 		t.Logf("%s: %d messages, %d valid function responses, %d request bytes", mode, len(messages), responses, len(built.Body))
+		t.Logf("%s: omitted tool attachments at contents indices %v", mode, omittedAt)
 	}
 }

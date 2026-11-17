@@ -35,6 +35,14 @@ Every engine process hosts the control server and publishes its address and toke
 4. The response is stored, usage recorded, and tool calls run one at a time. Unknown tools, invalid or truncated arguments, unsupported media and crashes all become tool results the model can read.
 5. Repeat until the model answers without tools, with a cap on rounds.
 
+Gemini builds also preflight the encoded function-response attachments, after
+`extra_body` is merged and before request-size measurement. Text placeholders
+inside `functionResponse.parts` are moved to `response.attachment_notes`; media,
+tool output, call IDs and thought signatures are preserved. Ambiguous nested
+parts produce a local error with the exact request path instead of a provider
+400. Valid requests retain their original bytes. This is a focused guard for
+function-response attachment structure, not a complete remote API validator.
+
 `Stop` cancels the in-flight request and tools but still writes a result for every call, so the log stays valid.
 
 ## Compaction

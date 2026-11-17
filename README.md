@@ -217,19 +217,19 @@ When running in CLI or Web UI mode, type slash commands to inspect or alter runt
 
 ```bash
 # Windows PowerShell
-.\scripts\package.ps1 -Version 0.1.0
+.\scripts\package.ps1 -Version 0.1.1
 
 # Linux / macOS
-./scripts/package.sh 0.1.0
+./scripts/package.sh 0.1.1
 ```
 
 Compiled release archives and checksums are placed into `dist/`:
-- `zagent-0.1.0-windows-amd64.zip`
-- `zagent-0.1.0-windows-arm64.zip`
-- `zagent-0.1.0-linux-amd64.tar.gz`
-- `zagent-0.1.0-linux-arm64.tar.gz`
-- `zagent-0.1.0-darwin-amd64.tar.gz`
-- `zagent-0.1.0-darwin-arm64.tar.gz`
+- `zagent-0.1.1-windows-amd64.zip`
+- `zagent-0.1.1-windows-arm64.zip`
+- `zagent-0.1.1-linux-amd64.tar.gz`
+- `zagent-0.1.1-linux-arm64.tar.gz`
+- `zagent-0.1.1-darwin-amd64.tar.gz`
+- `zagent-0.1.1-darwin-arm64.tar.gz`
 - `SHA256SUMS.txt`
 
 ---

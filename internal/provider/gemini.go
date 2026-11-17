@@ -79,6 +79,10 @@ func (g *geminiAdapter) Build(req Request) (*Built, error) {
 	if err != nil {
 		return nil, fmt.Errorf("encode gemini request: %w", err)
 	}
+	raw, err = repairGeminiToolResponseParts(raw)
+	if err != nil {
+		return nil, fmt.Errorf("validate gemini request: %w", err)
+	}
 	return &Built{Method: http.MethodPost, URL: g.endpoint, Header: g.header(), Body: raw, Format: FormatGemini}, nil
 }
 

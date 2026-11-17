@@ -12,7 +12,7 @@ import (
 )
 
 // version is overridden at build time: -ldflags "-X main.version=1.2.3".
-var version = "0.1.0-dev"
+var version = "0.1.1"
 
 // Exit codes are part of the headless contract so scripts can branch on them.
 const (
