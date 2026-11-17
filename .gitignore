@@ -1,0 +1,11 @@
+# build output
+/dist/
+/bin/
+*.exe
+# local runtime state and secrets
+/home-dev/
+.env
+*.log
+# editor
+.vscode/
+.idea/
